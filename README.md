@@ -48,6 +48,6 @@ Teams working on the Belimo case will recieve [Delta Sharing](https://delta.io/s
 
 Please refer to the [Belimo Case](https://starthack.eu/#/case-details?id=18) for contact information.
 
-## <p align="center"> Prize - the winning team members will receive: </p>
+## <p align="center"> Prize - the winning team will receive: </p>
 
 3000 CHF for a Team Event of your choice
