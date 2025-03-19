@@ -18,6 +18,8 @@ You are being empowered to develop use cases to monetize digital assets within t
 
 ## <p align="center"> Deep Dive Slides: </p>
 
+You can find the deep dive slides [here](https://github.com/START-Hack/Belimo_STARTHACK25/blob/main/start-hack-deep-dive-belimo.pdf).
+
 ### Introduction
 
 Belimo offers devices which are able to send data to the cloud providing transparency into building operation performance with respect to heating, cooling, and ventilation.
