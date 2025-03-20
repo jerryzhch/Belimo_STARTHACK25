@@ -1,5 +1,29 @@
 FROM quay.io/jupyter/pyspark-notebook:spark-3.5.3
+
+USER root
+
+# Install dependencies
+RUN apt update && apt install -y curl build-essential 
+
+# Install Rust and Cargo
+ENV HOME=/root
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y 
+
+# Fix permissions for Rust installation
+RUN chmod -R 755 /root/.cargo
+
+# Ensure Cargo is available for all users
+ENV PATH="/root/.cargo/bin:${PATH}"
+RUN echo 'export PATH="/root/.cargo/bin:$PATH"' >> /etc/profile
+
+# Verify Cargo installation
+RUN source /root/.cargo/env && cargo --version
+
+
+# Install Python dependencies
 RUN pip install delta-sharing findspark
+
+# Set up Spark session
 RUN echo 'import findspark' > /home/jovyan/session.py \
     && echo 'findspark.init()' >> /home/jovyan/session.py \
     && echo 'from pyspark.sql import SparkSession' >> /home/jovyan/session.py \
