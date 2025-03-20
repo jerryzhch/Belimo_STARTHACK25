@@ -41,3 +41,4 @@ Thumbs.db
 # Production build
 www/
 src/js/firebase.js
+.firebase/hosting.d3d3.cache

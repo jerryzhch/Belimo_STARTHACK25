@@ -34,7 +34,7 @@ const MyApp = () => {
     name: 'BelimoWise', // App name
       theme: 'ios', // Automatic theme detection
 
-      darkMode: true,
+      darkMode: false,
 
       // App routes
       routes: routes,
