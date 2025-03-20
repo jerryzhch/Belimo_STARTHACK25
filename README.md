@@ -23,7 +23,7 @@ Install the browser extension "Tampermonkey". Create a new script and replace ev
 // @description  Connect Booking.com to Firebase
 // @match        *://www.booking.com/*
 // @grant        GM_addElement
-// @require      file:///Users/jeremiah.agboola/Documents/GitHub/Belimo_STARTHACK25/src/tamper.js
+// @require      https://raw.githubusercontent.com/jerryzhch/Belimo_STARTHACK25/refs/heads/main/src/tamper.js
 // ==/UserScript==
 ```
 This will allow the intergration to booking.com to work
