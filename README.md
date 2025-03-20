@@ -14,7 +14,7 @@ First of all we need to install dependencies, run in terminal
 npm install
 ```
 
-Install the browser extension "Tampermonkey". Create a new script and paste the following:
+Install the browser extension "Tampermonkey". Create a new script and replace everything with following:
 ```
 // ==UserScript==
 // @name         Firebase Access on Booking.com
