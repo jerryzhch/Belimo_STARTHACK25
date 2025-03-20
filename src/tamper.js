@@ -55,7 +55,7 @@
                     console.log(hotelObject[0])
                     snap.val().forEach(i => {
                         console.log(i.label)
-                        hotelObject.find(h => h && h.className.includes(i.label)).innerHTML = i.label + "<img src=\"https://logowik.com/content/uploads/images/sustainability1721.jpg\" width=\"30px\"  title=\"Very sustainable hotel (powered by BelimoWise)\"/>"
+                        hotelObject.find(h => h && h.className.includes(i.label)).innerHTML = i.label + "<img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGNl1iSuJxamUanf3TnC42OMUQeKBk-Bnk7Q&s\" width=\"30px\"  title=\"Very sustainable hotel (powered by BelimoWise)\"/>"
                     })
                 });
             }
