@@ -9,6 +9,29 @@
 
 (function() {
     'use strict';
+    // Create overlay element
+    let overlay = document.createElement("div");
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.backgroundColor = "rgba(211, 211, 211, 0.9)"; // Light grey with transparency
+    overlay.style.display = "flex";
+    overlay.style.justifyContent = "center";
+    overlay.style.alignItems = "center";
+    overlay.style.zIndex = "9999";
+
+    // Create text element
+    let text = document.createElement("div");
+    text.innerText = "BelimoWise analyzing";
+    text.style.color = "green";
+    text.style.fontSize = "24px";
+    text.style.fontWeight = "bold";
+
+    // Append text to overlay
+    overlay.appendChild(text);
+    document.body.appendChild(overlay);
 
     // Inject Firebase SDK
     const script = document.createElement('script');
@@ -40,6 +63,7 @@
 
         // Capture and store hotel names from search results
         setTimeout(() => {
+            overlay.remove();
             document.querySelectorAll('[data-testid="title"]').forEach(el => {
                 const hotelName = el.textContent.trim()
                 hotels.push(hotelName);
