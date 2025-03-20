@@ -11,7 +11,6 @@ import {
 import { FB_DATABASE } from "../components/app";
 import { limitToFirst, onValue, query, ref, set } from "firebase/database";
 import { BarChart } from "@mui/x-charts/BarChart";
-import { axisClasses } from "@mui/x-charts/ChartsAxis";
 import {
   TableContainer,
   Paper,
@@ -21,97 +20,25 @@ import {
   TableCell,
   TableBody,
 } from "@mui/material";
-function createData(hotelname: string, score: number) {
-  return { hotelname, score };
-}
+import {
+  calculateAverageForBuildings,
+  chartSetting,
+  defaultDeviceIds,
+  defaultHotelNames,
+  normalize,
+} from "../js/utils";
 
-const chartSetting = {
-  yAxis: [
-    {
-      label: "Eff_Coeff (kJ)",
-    },
-  ],
-  width: 1400,
-  height: 600,
-  sx: {
-    [`.${axisClasses.left} .${axisClasses.label}`]: {
-      transform: "translate(-10px, 30px)",
-    },
-  },
-};
-const rows = [];
-function calculateAverageForBuildings(data, yearMonth, cities) {
-  // Initialize an empty object to store the results for each city
-  const result = cities.reduce((acc, city) => {
-    // Filter data for the specific city and yearMonth
-    if (data[city]) {
-      const cityData = data[city].filter(
-        (item) => String(item.year_month_day) === yearMonth
-      );
-      // Sum up "cool-coeff" and "heat-coeff" for the filtered data
-      const totalSum = cityData.reduce(
-        (sum, item) =>
-          sum + (item["cool-coeff"] || 0) + (item["heat-coeff"] || 0),
-        0
-      );
-
-      // Calculate the average
-      const average = cityData?.length > 0 ? totalSum / cityData.length : 0;
-
-      // Add the average to the result object
-      acc[city] = average;
-      acc["date"] = yearMonth;
-    }
-    return acc;
-  }, {});
-
-  // Return the result as an array containing the dataset object
-  return result;
-}
 const HomePage = () => {
   const db = useContext(FB_DATABASE);
   const hotelNamesRef = query(ref(db, "/hotelNames"));
   const hotelScoreRef = ref(db, "/hotelScoreRef");
+  
   const [series, setSeries] = useState<
     { dataKey: string; label: string; score: number }[]
   >([]);
-  const [dataset, setDataset] = useState([]);
-  const [hotelNames, setHotelNames] = useState([
-    "Radisson Blu Hotel, St. Gallen",
-    "Hotel Elite",
-    "Hotel Dom",
-    "Hotel one66",
-    "Hotel Vadian Garni",
-    "Hotel Eastside",
-    "Sorell Hotel City Weissenstein",
-    "Einstein St. Gallen",
-    "Hotel am Spisertor",
-    "Hotel Walhalla",
-    "Hotel Metropol",
-    "Boutique City Hotel Gallo",
-    "Militärkantine St. Gallen",
-    "Newstar Hotel",
-    "Hotel Restaurant Falkenburg",
-    "Hotel Garni Rössli",
-    "Oberwaid - Das Hotel",
-    "Hotel Weisses Kreuz",
-    "Hotel Restaurant Schiff",
-    "TouchBed City Apartments St. Gallen",
-  ]);
-  const [deviceIdSortOrder, setDeviceIdSortOrder] = useState([
-    "14e5bc06-9e32-4938-96df-82a070581e7d",
-    "15cbf304-2834-4523-81d1-45c0bbc0f849",
-    "1528aa2a-dcc8-49e7-9ae1-beff231f4564",
-    "15d95108-5243-4976-9c14-7538fd745aab",
-    "1567032c-3461-4542-9aa9-fd36dc381c4e",
-    "15d26fdd-a798-4cb3-b4c4-8bb3f814dcaa",
-    "a42e0599-f18f-435e-ad97-7131277f42e9",
-    "a3760aa4-3e7e-4e66-8bac-795dcc40a538",
-    "a4320fab-41b4-4c33-9cf2-8180e77ab060",
-    "c421b7d1-617c-46cb-9463-e0920c2c7c18",
-    "c5b48b21-9007-4bb5-8968-ba15a69a7900",
-    "c5ca3fc9-bf93-4de1-ac0c-853e8043c5ba",
-  ]);
+  const [chartDataset, setDataset] = useState([]);
+  const [hotelNames, setHotelNames] = useState(defaultHotelNames);
+  const [deviceIdSortOrder, setDeviceIdSortOrder] = useState(defaultDeviceIds);
 
   useEffect(() => {
     const dataSet = query(ref(db, "/dataset"), limitToFirst(30));
@@ -119,21 +46,25 @@ const HomePage = () => {
       const data = snapshot.val();
       setDeviceIdSortOrder(Object.keys(data));
 
-      const chartDataset = [];
+      const rowDataset = [];
       for (let i = 20190601; i < 20190632; i++) {
-        chartDataset.push(
+        rowDataset.push(
           calculateAverageForBuildings(data, i.toString(), deviceIdSortOrder)
         );
       }
-
-      setDataset(chartDataset);
+      rowDataset.map(c => {
+        deviceIdSortOrder.map(d => {
+          c[d] = normalize(c[d])
+        })
+      })
+      setDataset(rowDataset);
     });
   }, []);
 
   useEffect(() => {
     const series: { dataKey: string; label: string; score: number }[] = [];
-    if (dataset && dataset.length > 0) {
-      const keys = Object.keys(dataset[0]);
+    if (chartDataset && chartDataset.length > 0) {
+      const keys = Object.keys(chartDataset[0]);
       Object.values(keys).map((d, i) => {
         series.push({
           dataKey: d.toString(),
@@ -144,7 +75,7 @@ const HomePage = () => {
 
       series.map((s) => {
         if (s.dataKey === "date") return;
-        dataset.map((c) => {
+        chartDataset.map((c) => {
           if (s.score) s.score += c[s.dataKey];
           else s.score = c[s.dataKey];
         });
@@ -155,7 +86,7 @@ const HomePage = () => {
         series.filter((s) => s.dataKey !== "date")
       );
     }
-  }, [dataset, hotelNames]);
+  }, [chartDataset, hotelNames]);
 
   useEffect(() => {
     onValue(hotelNamesRef, (snapshot) => {
@@ -171,14 +102,21 @@ const HomePage = () => {
       {/* Toolbar */}
       {/* Page content */}
       <Block style={{ height: "92%", overflow: "auto" }}>
-        <BlockTitle>Plain table</BlockTitle>
         <Card className="data-table data-table-init">
+        <BlockTitle>June 2019 Plot</BlockTitle>
           <CardContent>
-            {series && series.length > 0 && dataset && (
+            {series && chartDataset && (
               <BarChart
-                dataset={dataset}
+                dataset={chartDataset}
                 xAxis={[{ scaleType: "band", dataKey: "date" }]}
                 series={series}
+                slotProps={{
+                  legend: {
+                    labelStyle: {
+                      fontSize: 10,
+                    },
+                  },
+                }}
                 {...chartSetting}
               />
             )}
@@ -187,9 +125,9 @@ const HomePage = () => {
                 <TableHead>
                   <TableRow>
                     <TableCell>Hotel Name</TableCell>
-                    <TableCell align="right">Ranking (June 2019)</TableCell>
+                    <TableCell align="right">Ranking</TableCell>
                     <TableCell align="right">
-                      Absolute Value (June 2019)
+                    Energy Eff_Coef
                     </TableCell>
                   </TableRow>
                 </TableHead>
