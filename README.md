@@ -1,18 +1,12 @@
 # BelimoWise
 
-Check in realtime which hotels are succesfully run sustainably and book your next stay there. With the help of Belima IOT devices installed in numerous hotels our product will inform the future guest live on booking.com on which hotel is on track of sustainabilty. It gives them the incentive to showcase their hard work in contributing to a more climate-friendly operation. And aware travellers will be sure that they are residing in a good place.
-As the Belimo devices track the heating and cooling processes around the building, it will allow for an accurate feedback. 
+Check in real-time which hotels are successfully operating sustainably and book your stay with confidence. With Belimo IoT devices installed in numerous hotels, our product provides live sustainability insights on Booking.com, ensuring future guests know which hotels are on track. This incentivizes hotels to showcase their climate-friendly efforts while giving eco-conscious travelers peace of mind. By monitoring heating and cooling processes, Belimo devices offer accurate and transparent feedback on sustainable operations.
 
 ## Framework7 CLI Options
 
 Framework7 app created with following options:
 
 ## Install Dependencies
-
-First of all we need to install dependencies, run in terminal
-```
-npm install
-```
 
 Install the browser extension "Tampermonkey". Create a new script and replace everything with following:
 ```
@@ -28,13 +22,6 @@ Install the browser extension "Tampermonkey". Create a new script and replace ev
 ```
 This will allow the intergration to booking.com to work
 
-
-
-## NPM Scripts
-
-* 🔥 `start` - run development server
-* 🔧 `dev` - run development server
-* 🔧 `build` - build web app for production
 
 ## Live
 Dashboard: https://starthack2025.web.app/
