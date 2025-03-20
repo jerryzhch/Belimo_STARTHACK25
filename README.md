@@ -1,55 +1,73 @@
-# <p align="center"> Digital Asset Monitization. </p>
+# BelimoWise
 
-# <p align="center"> Who are we? </p>
+## Framework7 CLI Options
 
-Belimo is the global market leader in the development, production, and sales of field devices for the energy-efficient control of heating, ventilation and air-conditioning systems. The focus of our core business is on damper actuators, control valves, sensors and meters. Founded in 1975, the company employs over 2,300 people and has been listed on the Swiss Exchange (SIX) since 1995.
+Framework7 app created with following options:
 
-## <p align="center"> Case Introduction: </p>
+```
+{
+  "cwd": "C:\\Users\\adm.agi\\Documents\\GitHub\\Belimo_STARTHACK25",
+  "type": [
+    "web"
+  ],
+  "name": "BelimoWise",
+  "framework": "react",
+  "template": "blank",
+  "bundler": "vite",
+  "cssPreProcessor": "scss",
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkMode": true,
+    "iconFonts": true
+  },
+  "customBuild": false
+}
+```
 
-Belimo is exclusively selling HVAC field devices for controlling the air quality and the thermal energy in the buildings such as control valves, damper actuators and sensors. Many devices come with a free of charge digital ecosystems, including such as a mobile app to interact with devices, e.g. to enable commissioning, and with data streaming capabilities via the Belimo Cloud. Even though we collect data from our devices for the customers (which generates costs for maintenance and hosting), we do not currently monetize data or services .
+## Install Dependencies
 
-## <p align="center"> Expected Outcome: </p>
+First of all we need to install dependencies, run in terminal
+```
+npm install
+```
 
-You are being empowered to develop use cases to monetize digital assets within the Belimo Cloud. Create an innovative, data driven business model as a digital service.
+## NPM Scripts
 
-## <p align="center"> The Pitch: </p>
+* 🔥 `start` - run development server
+* 🔧 `dev` - run development server
+* 🔧 `build` - build web app for production
 
-[Link to the video pitch]
+## Vite
 
-## <p align="center"> Deep Dive Slides: </p>
+There is a [Vite](https://vitejs.dev) bundler setup. It compiles and bundles all "front-end" resources. You should work only with files located in `/src` folder. Vite config located in `vite.config.js`.
+## Assets
 
-You can find the deep dive slides [here](https://github.com/START-Hack/Belimo_STARTHACK25/blob/main/start-hack-deep-dive-belimo.pdf).
+Assets (icons, splash screens) source images located in `assets-src` folder. To generate your own icons and splash screen images, you will need to replace all assets in this directory with your own images (pay attention to image size and format), and run the following command in the project directory:
 
-### Introduction
+```
+framework7 assets
+```
 
-Belimo offers devices which are able to send data to the cloud providing transparency into building operation performance with respect to heating, cooling, and ventilation.
+Or launch UI where you will be able to change icons and splash screens:
 
-While only a limited dataset it provided, you are encourage to think "out-of-the-box". Good ideas depending on additional information are definitly worthwhile to pursue, especially if the "missing" data exists but is not provided.
+```
+framework7 assets --ui
+```
 
-### Data
 
-Two primary data sources are provided.
 
-1. Timeseries device data which includes physical measurements such as volumetric flow, temperature difference, and power.
-2. Cloud api interaction logs.g
+## Documentation & Resources
 
-### Data Access
+* [Framework7 Core Documentation](https://framework7.io/docs/)
 
-Teams working on the Belimo case will recieve [Delta Sharing](https://delta.io/sharing/) access via a token. The [Databrick Community Edition](https://community.cloud.databricks.com/login.html) provides compute and makes use of notebooks. Documentation (in particulare for Spark) to connect to the share is available [here](https://docs.databricks.com/aws/en/delta-sharing/read-data-open).
+* [Framework7 React Documentation](https://framework7.io/react/)
 
-<p align="center">  </p>
+* [Framework7 Icons Reference](https://framework7.io/icons/)
+* [Community Forum](https://forum.framework7.io)
 
-## <p align="center"> Judging Criteria: </p>
+## Support Framework7
 
-● Novelty (40%) "Surprise effect to the jury; Intriguing / attractiveness to the jury"
-● Business Viability (30%)
-● Technical Feasibility (20%)
-● Presentation: Communication of the developed solution (10%)
-
-## <p align="center"> Point of Contact: </p>
-
-Please refer to the [Belimo Case](https://starthack.eu/#/case-details?id=18) for contact information.
-
-## <p align="center"> Prize - the winning team will receive: </p>
-
-3000 CHF for a Team Event of your choice
+Love Framework7? Support project by donating or pledging on:
+- Patreon: https://patreon.com/framework7
+- OpenCollective: https://opencollective.com/framework7
