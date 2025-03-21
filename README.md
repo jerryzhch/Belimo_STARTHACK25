@@ -28,3 +28,8 @@ Head to booking.com to see it work by searching for St Gallen (for example) as d
 ## BelimoWise Dashboard
 Dashboard: https://starthack2025.web.app/
 
+## Team
+Jerry Agboola
+Aisha Tharmalingam
+Ozan Zeray
+Mohammed Ismail
