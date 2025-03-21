@@ -20,7 +20,7 @@ Install the browser extension "Tampermonkey". Create a new script and replace ev
 // @require      https://raw.githubusercontent.com/jerryzhch/Belimo_STARTHACK25/refs/heads/main/src/tamper.js
 // ==/UserScript==
 ```
-ctrl+s / cmd+s to save. The script will be then activated. 
+ctrl+s (for mac: cmd+s) to save. The script will be then activated. 
 
 Head to booking.com to see it work by searching for St Gallen (for example) as destination.
 
