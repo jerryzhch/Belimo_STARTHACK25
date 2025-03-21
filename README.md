@@ -20,7 +20,7 @@ Install the browser extension "Tampermonkey". Create a new script and replace ev
 // @require      https://raw.githubusercontent.com/jerryzhch/Belimo_STARTHACK25/refs/heads/main/src/tamper.js
 // ==/UserScript==
 ```
-This will allow the integration with booking.com to work.
+ctrl+s / cmd+s to save. This will allow the integration with booking.com to work.
 
 
 ## BelimoWise Dashboard
