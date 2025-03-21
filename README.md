@@ -2,11 +2,11 @@
 
 Check in real-time which hotels are successfully operating sustainably and book your stay with confidence. With Belimo IoT devices installed in numerous hotels, our product provides live sustainability insights on Booking.com, ensuring future guests know which hotels are on track. This incentivizes hotels to showcase their climate-friendly efforts while giving eco-conscious travelers peace of mind. By monitoring heating and cooling processes, Belimo devices offer accurate and transparent feedback on sustainable operations.
 
-## Framework7 CLI Options
+## tldr
 
-Framework7 app created with following options:
+The integration on booking.com scans hotel names, sends them to a database, from where the Dashboard will return calculated score data. The Tampermonkey script will then reveal the sustainable operating hotels with a "care"-icon next to the title.
 
-## Install Dependencies
+## BelimoWise Integration with booking.com
 
 Install the browser extension "Tampermonkey". Create a new script and replace everything with following:
 ```
@@ -20,8 +20,9 @@ Install the browser extension "Tampermonkey". Create a new script and replace ev
 // @require      https://raw.githubusercontent.com/jerryzhch/Belimo_STARTHACK25/refs/heads/main/src/tamper.js
 // ==/UserScript==
 ```
-This will allow the intergration to booking.com to work
+This will allow the integration with booking.com to work.
 
 
-## Live
+## BelimoWise Dashboard
 Dashboard: https://starthack2025.web.app/
+
