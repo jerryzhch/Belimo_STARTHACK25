@@ -32,7 +32,7 @@ const HomePage = () => {
   const db = useContext(FB_DATABASE);
   const hotelNamesRef = query(ref(db, "/hotelNames"));
   const hotelScoreRef = ref(db, "/hotelScoreRef");
-  
+
   const [series, setSeries] = useState<
     { dataKey: string; label: string; score: number }[]
   >([]);
@@ -52,11 +52,11 @@ const HomePage = () => {
           calculateAverageForBuildings(data, i.toString(), deviceIdSortOrder)
         );
       }
-      rowDataset.map(c => {
-        deviceIdSortOrder.map(d => {
-          c[d] = normalize(c[d])
-        })
-      })
+      rowDataset.map((c) => {
+        deviceIdSortOrder.map((d) => {
+          c[d] = normalize(c[d]);
+        });
+      });
       setDataset(rowDataset);
     });
   }, []);
@@ -97,13 +97,23 @@ const HomePage = () => {
     <Page name="home" style={{ height: "100%", overflow: "hidden" }}>
       {/* Top Navbar */}
       <Navbar>
-        <NavTitle>BelimoWise</NavTitle>
+        <NavTitle>BelimoWise Dashboard</NavTitle>
       </Navbar>
       {/* Toolbar */}
       {/* Page content */}
+      <Block>
+        "Check in real-time which hotels are successfully operating sustainably
+        and book your stay with confidence. With Belimo IoT devices installed in
+        numerous hotels, our product provides live sustainability insights on
+        Booking.com, ensuring future guests know which hotels are on track. This
+        incentivizes hotels to showcase their climate-friendly efforts while
+        giving eco-conscious travelers peace of mind. By monitoring heating and
+        cooling processes, Belimo devices offer accurate and transparent
+        feedback on sustainable operations."
+      </Block>
       <Block style={{ height: "92%", overflow: "auto" }}>
         <Card className="data-table data-table-init">
-        <BlockTitle>June 2019 Plot</BlockTitle>
+          <BlockTitle>June 2019 Plot</BlockTitle>
           <CardContent>
             {series && chartDataset && (
               <BarChart
@@ -126,9 +136,7 @@ const HomePage = () => {
                   <TableRow>
                     <TableCell>Hotel Name</TableCell>
                     <TableCell align="right">Ranking</TableCell>
-                    <TableCell align="right">
-                    Energy Eff_Coef
-                    </TableCell>
+                    <TableCell align="right">Energy Eff_Coef</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
