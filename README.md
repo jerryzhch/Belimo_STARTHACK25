@@ -20,7 +20,9 @@ Install the browser extension "Tampermonkey". Create a new script and replace ev
 // @require      https://raw.githubusercontent.com/jerryzhch/Belimo_STARTHACK25/refs/heads/main/src/tamper.js
 // ==/UserScript==
 ```
-ctrl+s / cmd+s to save. This will allow the integration with booking.com to work.
+ctrl+s / cmd+s to save. The script will be then activated. 
+
+Head to booking.com to see it work by searching for St Gallen (for example) as destination.
 
 
 ## BelimoWise Dashboard
